@@ -3,7 +3,10 @@ from discord.ext import commands
 import getcoin
 
 
-TOKEN = 'NTkzNDUyODI2Mzc4ODk1Mzgz.XROljQ.xCHjkkqQKzRrkj3Z9_qya2qWq_8'
+user_token = open("token", "r")
+TOKEN = user_token.read().rstrip()
+user_token.close()
+print(TOKEN)
 
 
 client = commands.Bot(command_prefix = '!')
