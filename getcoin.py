@@ -5,14 +5,17 @@ def human_format(num, round_to=2):
     if type(num) is str:
         num = float(num)
     magnitude = 0
+    if num is None:
+        return 'NA'
     while abs(num) >= 1000:
         magnitude += 1
         num = round(num / 1000.0, round_to)
     return '{:.{}f}{}'.format(round(num, round_to), round_to, ['', 'K', 'M', 'B', 'T'][magnitude])
 
 class Coin: 
-    def __init__(self):
-        api_request = requests.get('https://api.coinmarketcap.com/v1/ticker/burst/')
+    def __init__(self, name):
+        url = 'https://api.coinmarketcap.com/v1/ticker/' + name
+        api_request = requests.get(url)
         coin = json.loads(api_request.content)
         self.rank = coin[0]['rank']
         self.volume = human_format(coin[0]['24h_volume_usd'], 3)
