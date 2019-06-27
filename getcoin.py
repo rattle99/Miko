@@ -17,20 +17,11 @@ class Coin:
         self.rank = coin[0]['rank']
         self.volume = human_format(coin[0]['24h_volume_usd'], 3)
         self.market_cap = human_format(coin[0]['market_cap_usd'], 3)
-        self.price_btc = coin[0]['price_btc']
-        self.price_usd = coin[0]['price_usd']
+        self.price_btc = coin[0]['price_btc'] + '**BTC**'
+        self.price_usd = '**$**' + human_format(coin[0]['price_usd'], 4)
         self.change_1h = coin[0]['percent_change_1h']
         self.change_24h = coin[0]['percent_change_24h']
         self.change_7d = coin[0]['percent_change_7d']
-
+        self.swing = swing = "**1H:**" + self.change_1h + "% " + "   |   " + "**24H:**" + self.change_24h + "%  " + "   |   " + "**7D:**" + self.change_7d + "%"
+        self.price = self.price_usd + "  " + "or" + "  " + self.price_btc
         
-if __name__ == '__main__':
-    c = Coin()
-    print(c.rank)
-    print(c.volume)
-    print(c.market_cap)
-    print(c.price_btc)
-    print(c.price_usd)
-    print(c.change_1h)
-    print(c.change_24h)
-    print(c.change_7d)
