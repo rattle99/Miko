@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+from datetime import datetime
+
 import getcoin
 
 
@@ -21,13 +23,13 @@ async def ping(ctx):
     await ctx.send('Pong!')
 
 def makeEmbed(name):
-    embed = discord.Embed(
-        colour = discord.Colour.from_rgb(255, 220, 156)
-    )
-
     coin = getcoin.Coin(name)
-    
-    embed.set_footer(text = 'Prices from CoinMarketCap', icon_url = 'https://i.imgur.com/N04AybW.jpg')
+
+    embed = discord.Embed(
+        colour = discord.Colour.from_rgb(255, 220, 156),
+        timestamp = datetime.utcfromtimestamp(coin.last_updated)
+    )
+    embed.set_footer(text = 'Prices from CoinMarketCap  |  Fetched ', icon_url = 'https://i.imgur.com/N04AybW.jpg')
     embed.set_author(name = name.capitalize())
     embed.add_field(name = 'Price', value = coin.price, inline = True)
     embed.add_field(name = 'Rank', value = coin.rank, inline = True)

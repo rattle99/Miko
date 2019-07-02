@@ -27,4 +27,4 @@ class Coin:
         self.change_7d = coin[0]['percent_change_7d']
         self.swing = swing = "**1H:**" + self.change_1h + "% " + "   |   " + "**24H:**" + self.change_24h + "%  " + "   |   " + "**7D:**" + self.change_7d + "%"
         self.price = self.price_usd + "  " + "or" + "  " + self.price_btc
-        
+        self.last_updated = int(coin[0]['last_updated'])
