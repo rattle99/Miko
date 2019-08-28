@@ -17,6 +17,7 @@ client = commands.Bot(command_prefix = '!')
 async def on_ready():
     print('Bot is ready!')
     print('Logged in as {0.user}'.format(client))
+    await client.change_presence(activity=discord.Game("With Coins!"))
 
 @client.command(aliases=['Ping'])
 async def ping(ctx):
